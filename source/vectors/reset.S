@@ -28,14 +28,14 @@ reset_handler:
     lda #0
     ldx #0
 @zero_ram:
-    sta $0000, X
-    sta $0100, X
-    sta $0200, X
-    sta $0300, X
-    sta $0400, X
-    sta $0500, X
-    sta $0600, X
-    sta $0700, X
+    sta $0000, A
+    sta $0100, A
+    sta $0200, A
+    sta $0300, A
+    sta $0400, A
+    sta $0500, A
+    sta $0600, A
+    sta $0700, A
     inx
     bne @zero_ram
 
