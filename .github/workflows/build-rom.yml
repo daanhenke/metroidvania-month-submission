@@ -1,0 +1,26 @@
+name: Build debug & release roms
+
+on:
+  push:
+    branches: ['master']
+
+jobs:
+  build-roms:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    container:
+      image: ghcr.io/daanhenke/nes-buildbot:master
+      volumes:
+      - ${{ github.workspace }}:/project
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+    steps:
+    - uses: actions/checkout@v3
+    - run: make all
+    - uses: actions/upload-artifact@v2
+      with:
+        name: roms
+        path: build/out
